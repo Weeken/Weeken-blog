@@ -27,8 +27,12 @@
       <h2>关于网站</h2>
       <div class="item">本站服务端采用 Koa2 + mongoDB 搭建, 客户端采用 Vue2 + vue-router搭建。</div>
       <div class="item">本站分成前台和后台，前台所有访问者都可以浏览，后台仅作者可见。</div>
-      <div class="item">主要功能包括: 管理员, 用户, 笔记, 评论（暂无）, 文章点赞（暂无）。</div>
-      <div class="item">主要功能包括: 管理员, 用户, 笔记, 评论（暂无）, 文章点赞（暂无）。</div>
+      <div class="item">主要功能包括: 管理员, 用户, 笔记, 评论（即将上线）, 文章点赞（即将上线）。</div>
+      <div class="item">源代码: <a href="https://github.com/Weeken/Weeken-blog" target="_blank">前端代码(Weeken-blog)</a>，<a href="https://github.com/Weeken/blog-management" target="_blank">后端代码(blog-management)</a>，欢迎前来点评，收藏加星。</div>
+    </div>
+    <div class="about_block">
+      <h2>声明</h2>
+      <div class="item">本站的文章是我的笔记，若有侵权行为，请联系我删除或更改。</div>
     </div>
   </div>
 </template>
@@ -42,7 +46,7 @@ export default {
 <style lang="less" scoped>
   .about{
     width: 900px;
-    height: 900px;
+    // height: 900px;
     background: #fff;
     border-radius: 5px;
     margin: 30px auto;
@@ -62,6 +66,9 @@ export default {
         width: 100%;
         padding-left: 30px;
         font: 300 16px/30px microsoft yahei;
+
+        a{ color: #2196f3; }
+
         & > label{
           display: inline-block;
           width: 80px;
@@ -71,10 +78,6 @@ export default {
         & > span{
           display: inline-block;
           font-weight: 300;
-
-          & > a{
-            color: #2196f3;
-          }
         }
 
         & > .skill{

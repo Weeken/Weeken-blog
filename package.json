@@ -12,7 +12,6 @@
     "prismjs": "^1.11.0",
     "vue": "^2.5.13",
     "vue-cropper-simple": "^1.1.0",
-    "vue-prism": "^1.0.5",
     "vue-router": "^2.6.0",
     "vue-wangeditor-simple": "^1.5.43",
     "vuelidate": "^0.5.0"
