@@ -27,8 +27,17 @@ options.routes.push({path: '/', redirect: '/home'})
 options.routes.push(hasNav)
 
 // eslint-disable-next-line
-options.scrollBehavior = (to, from, savedPosition) => {
-  return { x: 0, y: 0 }
-}
+// options.scrollBehavior = (to, from, savedPosition) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (to.path === '/note') {
+//         // console.log();
+//         resolve({ x: 0, y: parseInt(window.localStorage.getItem('scrollTop')) || 0 })
+//       } else {
+//         resolve({ x: 0, y: 0 })
+//       }
+//     }, 2000)
+//   })
+// }
 
 export default options

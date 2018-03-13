@@ -79,7 +79,9 @@ export default {
       }
     }
   },
-  created () {}
+  created () {
+    this.currentPage = this.curpage
+  }
 }
 </script>
 
@@ -143,9 +145,9 @@ export default {
 
     &.disabled{
       cursor: not-allowed;
-      background-color: #ddd;
-      color: #aaa;
-      border-color: #aaa;
+      background-color: #eee;
+      color: #ccc;
+      border-color: #ddd;
     }
 
     &.pre:after{

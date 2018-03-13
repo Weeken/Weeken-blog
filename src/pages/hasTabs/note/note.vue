@@ -1,41 +1,47 @@
 <template lang="html">
   <div class="note clear">
     <div class="list">
-      <transition-group name="fade" mode="out-in">
-        <div class="note_item" v-for="item in notes" :key="item._id">
-          <div class="info clear">
-            <div class="tag">分类：<span>{{item.tag}}</span></div>
-            <div class="time">创建时间：{{item.time | time}}</div>
+      <div class="item_wrap">
+        <transition-group name="translateX" mode="out-in">
+          <div class="note_item" v-for="item in notes" :key="item._id" v-if="notes.length > 0">
+            <div class="info clear">
+              <div class="tag">分类：<span>{{item.tag}}</span></div>
+              <div class="time">创建时间：{{item.time | time}}</div>
+            </div>
+            <h2 class="title" @click="readNote(item._id)">{{item.title}}</h2>
+            <p class="abstract">{{item.abstract}}</p>
+            <div class="item_bottom">
+              <div class="part">
+                <i class="icon like" :class="{'active': item.likeUserId.includes(userInfo.id)}"></i><span class="number">{{item.like}} 赞</span>
+              </div>
+              <div class="part">
+                <i class="icon comment"></i><span class="number">{{item.comment}} 评论</span>
+              </div>
+              <div class="part">
+                <i class="icon read"></i><span class="number">{{item.read}} 浏览</span>
+              </div>
+            </div>
           </div>
-          <h2 class="title" @click="readNote(item._id)">{{item.title}}</h2>
-          <p class="abstract">{{item.abstract}}</p>
-          <div class="item_bottom">
-            <div class="part">
-              <i class="icon like"></i><span class="number">{{item.like}} 赞</span>
-            </div>
-            <div class="part">
-              <i class="icon comment"></i><span class="number">{{item.comment}} 评论</span>
-            </div>
-            <div class="part">
-              <i class="icon read"></i><span class="number">{{item.read}} 浏览</span>
-            </div>
-          </div>
-        </div>
-      </transition-group>
-      <div class="pagination_wrap">
-        <pagination :page-count="pageCount" :curpage.sync="currentPage" @current-change="pageChange"></pagination>
-      </div>
-    </div>
-    <div class="hot">
-      <h3>热门笔记</h3>
-      <div class="hot_note" v-for="item in hotNotes" :key="item._id">
-        <h4>{{item.title}}</h4>
-        <div class="hot_note_info">
-          <span><i class="like"></i>{{item.like}}</span>
-          <span><i class="comment"></i>{{item.comment}}</span>
+          <div class="note_item none" key="no_note" v-else>还没有笔记。。。</div>
+        </transition-group>
+        <div class="pagination_wrap" v-if="pageCount > 1">
+          <pagination :page-count="pageCount" :curpage.sync="currentPage" @current-change="pageChange"></pagination>
         </div>
       </div>
     </div>
+    <transition name="translateY" mode="out-in">
+      <div class="hot" v-if="hotNotes.length > 0">
+        <h3>热门笔记</h3>
+        <div class="hot_note" v-for="item in hotNotes" :key="item._id">
+          <h4 @click="readNote(item._id)">{{item.title}}</h4>
+          <div class="hot_note_info">
+            <span><i class="read"></i>{{item.read}}</span>
+            <span><i class="like"></i>{{item.like}}</span>
+            <span><i class="comment"></i>{{item.comment}}</span>
+          </div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -44,6 +50,7 @@ import Pagination from '../../../components/pagination/pagination'
 import Format from '../../../lib/format'
 export default {
   name: 'Note',
+  props: ['userInfo'],
   components: { Pagination },
   data () {
     return {
@@ -65,9 +72,10 @@ export default {
     scrollToTop (i) {
       let timer = setInterval(() => {
         //获取滚动条距离顶部的高度
-        let osTop = document.documentElement.scrollTop|| document.body.scrollTop
+        let view = document.querySelector('#view')
+        let osTop = view.scrollTop
         let speed = Math.floor(-osTop / 5)
-        document.documentElement.scrollTop = document.body.scrollTop = osTop + speed
+        view.scrollTop = osTop + speed
 
         if(osTop === 0){
           clearInterval(timer)
@@ -77,6 +85,7 @@ export default {
     },
     pageChange (i) {
       this.scrollToTop(i)
+      window.localStorage.setItem('currentPage', i)
     },
     async getNotes (page) {
       let res = await this.$http.getNotes(page)
@@ -93,7 +102,13 @@ export default {
     }
   },
   created () {
-    this.getNotes(this.currentPage)
+    let page = parseInt(window.localStorage.getItem('currentPage'))
+    if (page) {
+      this.currentPage = page
+      this.getNotes(page)
+    } else {
+      this.getNotes(this.currentPage)
+    }
     this.getHotNotes()
   }
 }
@@ -107,108 +122,128 @@ export default {
 }
   .note{
     width: 1020px;
-    min-height: 900px;
     margin: 30px auto;
 
     .list{
       float: left;
       width: 700px;
+      padding: 0 0 1px;
+      position: relative;
 
-      .note_item{
+      .item_wrap{
+        position: absolute;
         width: 100%;
-        // height: 250px;
-        background: #fff;
-        border-radius: 5px;
-        margin-bottom: 10px;
 
-        .info{
+        .note_item{
           width: 100%;
-          height: 30px;
-          padding: 0 20px;
-
-          .tag,.time{
-            float: left;
-            width: 50%;
-            color: #999;
-            font: 200 12px/30px microsoft yahei;
-          }
-          .tag > span{
-            color: #111;
-          }
-          .time{
-            text-align: right;
-          }
-        }
-
-        .title{
-          width: 100%;
-          height: 50px;
-          padding: 0 20px;
-          font: 700 20px/50px microsoft yahei;
-          color: #2196f3;
-          cursor: pointer;
-          overflow: hidden;
-          text-overflow:ellipsis;
-          white-space: nowrap;
-
-          &:hover{
-            color: #60b1f2;
-          }
-        }
-
-        .abstract{
-          padding: 0 20px;
-          min-height: 80px;
-          color: #333;
-          font: 14px/24px microsoft yahei;
-          text-indent: 2em;
-          text-align: justify;
+          // height: 250px;
+          background: #fff;
+          border-radius: 5px;
           margin-bottom: 10px;
-          word-wrap: break-word;
-          word-break: normal;
-        }
 
-        .item_bottom{
-          border-top: 1px solid #eee;
-          display: flex;
-          justify-content: center;
-          .part{
-            flex: 1;
-            height: 40px;
-            border-right: 1px solid #eee;
+          &.none{
+            height: 500px;
+            font-size: 24px;
+            line-height: 500px;
             text-align: center;
-            color: #999;
+            color: #ddd;
+            background: #f3f3f3;
+          }
 
-            &:last-child{
-              border-right: 0;
-            }
+          .info{
+            width: 100%;
+            height: 30px;
+            padding: 0 20px;
 
-            .icon{
-              font: 12px/40px icon;
-              &.like:before{
-                content: "\e9da";
-              }
-              &.comment:before{
-                content: "\e96f";
-              }
-              &.read:before{
-                content: "\e9d3";
-              }
+            .tag,.time{
+              float: left;
+              width: 50%;
+              color: #999;
+              font: 200 12px/30px microsoft yahei;
             }
-            .number{
-              margin-left: 10px;
-              font: 200 12px/40px microsoft yahei;
+            .tag > span{
+              color: #111;
+            }
+            .time{
+              text-align: right;
+            }
+          }
+
+          .title{
+            width: 100%;
+            height: 50px;
+            padding: 0 20px;
+            font: 700 20px/50px microsoft yahei;
+            color: #2196f3;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+
+            &:hover{
+              color: #60b1f2;
+            }
+          }
+
+          .abstract{
+            padding: 0 20px;
+            min-height: 80px;
+            color: #333;
+            font: 14px/24px microsoft yahei;
+            text-indent: 2em;
+            text-align: justify;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+            word-break: normal;
+          }
+
+          .item_bottom{
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: center;
+            .part{
+              flex: 1;
+              height: 40px;
+              border-right: 1px solid #eee;
+              text-align: center;
+              color: #999;
+
+              &:last-child{
+                border-right: 0;
+              }
+
+              .icon{
+                font: 12px/40px icon;
+                &.like:before{
+                  content: "\e9da";
+                }
+                &.like.active{
+                  color: #e91e63;
+                }
+                &.comment:before{
+                  content: "\e96f";
+                }
+                &.read:before{
+                  content: "\e9d3";
+                }
+              }
+              .number{
+                margin-left: 10px;
+                font: 200 12px/40px microsoft yahei;
+              }
             }
           }
         }
+
+        .pagination_wrap{
+          width: 100%;
+          height: 40px;
+          border-radius: 5px;
+          background: #fff;
+          margin-bottom: 30px;
+        }
       }
 
-      .pagination_wrap{
-        width: 100%;
-        height: 40px;
-        border-radius: 5px;
-        background: #fff;
-      }
     }
 
     .hot{
@@ -251,6 +286,9 @@ export default {
             & > i{
               font: 200 12px/20px icon;
               margin-right: 10px;
+              &.read:before{
+                content: "\e9d3";
+              }
               &.like:before{
                 content: "\e9da";
               }

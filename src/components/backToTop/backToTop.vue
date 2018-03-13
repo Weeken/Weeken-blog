@@ -12,9 +12,10 @@ export default {
     scrollToTop () {
       let timer = setInterval(() => {
         //获取滚动条距离顶部的高度
-        let osTop = document.documentElement.scrollTop|| document.body.scrollTop
+        let view = document.querySelector('#view')
+        let osTop = view.scrollTop
         let speed = Math.floor(-osTop / 5)
-        document.documentElement.scrollTop = document.body.scrollTop = osTop + speed
+        view.scrollTop = osTop + speed
 
         if(osTop === 0){
           clearInterval(timer)
@@ -37,6 +38,7 @@ export default {
     bottom: 50px;
     width: 40px;
     height: 40px;
+    z-index: 200000;
     border-radius: 50%;
     color: #aaa;
     background-color: #fff;

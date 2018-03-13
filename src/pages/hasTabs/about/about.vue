@@ -33,6 +33,7 @@
     <div class="about_block">
       <h2>声明</h2>
       <div class="item">本站的文章是我的笔记，若有侵权行为，请联系我删除或更改。</div>
+      <div class="item">访客的注册邮箱会保密，邮箱留作有必要联系的时候用。</div>
     </div>
   </div>
 </template>

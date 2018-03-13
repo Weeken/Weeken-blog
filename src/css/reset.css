@@ -32,10 +32,10 @@ input{
   -moz-appearance:button; /* Firefox */
   -webkit-appearance:button; /* Safari 和 Chrome */
 }
-input::-webkit-input-placeholder { color: #dcdcdc; font-size: 14px; font-weight: 100; }
-input:-moz-placeholder { color: #dcdcdc; font-size: 14px; font-weight: 100; }
-input::-moz-placeholder { color: #dcdcdc; font-size: 14px; font-weight: 100; }
-input:-ms-input-placeholder { color: #dcdcdc; font-size: 14px; font-weight: 100; }
+input::-webkit-input-placeholder { color: #bbb; font-size: 14px; font-weight: 100; }
+input:-moz-placeholder { color: #bbb; font-size: 14px; font-weight: 100; }
+input::-moz-placeholder { color: #bbb; font-size: 14px; font-weight: 100; }
+input:-ms-input-placeholder { color: #bbb; font-size: 14px; font-weight: 100; }
 
 li{
   list-style: none;
@@ -63,8 +63,44 @@ a{
   transform: scaleY(0);
 }
 
+
+.translateX-enter-active, .translateX-leave-active {
+  transition: all 1s;
+}
+.translateX-enter, .translateX-leave-active {
+  opacity: 0;
+}
+.translateX-enter {
+  transform: translateX(1000px);
+}
+.translateX-leave-active {
+  transform: translateX(-1000px);
+}
+
+.translateY-enter-active, .translateY-leave-active {
+  transition: all 1s;
+}
+.translateY-enter, .translateY-leave-active {
+  opacity: 0;
+}
+.translateY-enter {
+  transform: translateY(1000px);
+}
+.translateY-leave-active {
+  transform: translateY(-1000px);
+}
+
+.backToTop-enter-active, .backToTop-leave-active {
+  transition: all .2s ease-in-out;
+}
+.backToTop-enter, .backToTop-leave-to {
+  opacity: 0;
+  transform: translateY(100px)
+}
+
+
 /**/
-.scale-enter-active{
+.scale-enter{
   animation: sacle-in .5s;
 }
 .scale-leave-active{

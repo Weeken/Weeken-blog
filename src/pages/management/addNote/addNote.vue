@@ -60,7 +60,7 @@ export default {
       if (res) {
         this.Alert.success(res.message)
         setTimeout(() => {
-          location.reload()
+          // location.reload()
         }, 2000)
       }
     }

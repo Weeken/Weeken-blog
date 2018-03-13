@@ -5,6 +5,7 @@ import routes from './router'
 import './css/reset.css'
 import API from './api/api'
 import {Alert} from './lib/alert'
+import Storage from './lib/local_storage'
 import Validation from 'vuelidate'
 import VueCropper from 'vue-cropper-simple'
 import VueWangeditor from 'vue-wangeditor-simple'
@@ -21,6 +22,7 @@ Vue.use(VueWangeditor)
 Vue.config.productionTip = false
 
 Vue.prototype.$http = API
+Vue.prototype.$storage = Storage
 Vue.prototype.$prism = Prism
 Vue.prototype.Alert = new Alert()
 

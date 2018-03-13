@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {Alert} from '../lib/alert'
+import Storage from '../lib/local_storage'
 
 let alert = new Alert()
 
@@ -9,24 +10,29 @@ const Envs = {
   production: 'http://118.89.51.110:3000'
 }
 
-const Env = Envs[process.env.NODE_ENV]
+const BASE = `${Envs[process.env.NODE_ENV]}/v1`
 
 const URL = {
-  TOKEN: `${Env}/token`,
-  REGISTER: `${Env}/users/register`,
-  LOGIN: `${Env}/users/login`,
+  TOKEN: `${BASE}/token`,
+  REGISTER: `${BASE}/users/register`,
+  LOGIN: `${BASE}/users/login`,
+  USERINFO: `${BASE}/users/userDetails`,
+  RESETPASSWORD: `${BASE}/users/resetPassword`,
 
-  MEMOS: `${Env}/memos/all`,
-  ADDMEMO: `${Env}/memos/addMemos`,
-  MEMOLIST: `${Env}/memos/memoList`,
-  DELETEMEMO: `${Env}/memos/deleteMemos/`,
+  MEMOS: `${BASE}/memos/all`,
+  ADDMEMO: `${BASE}/memos/admin/addMemos`,
+  MEMOLIST: `${BASE}/memos/admin/memoList`,
+  DELETEMEMO: `${BASE}/memos/admin/deleteMemos`,
 
-  NOTES: `${Env}/notes/all`,
-  HOTNOTES: `${Env}/notes/hotNotes`,
-  ADDNOTE: `${Env}/notes/addNotes`,
-  NOTEDETAILS: `${Env}/notes/noteDetails/`,
-  UPDATENOTE: `${Env}/notes/updateNote/`,
-  DELETENOTE: `${Env}/notes/deleteNotes/`
+  NOTES: `${BASE}/notes/all`,
+  HOTNOTES: `${BASE}/notes/hotNotes`,
+  ADDNOTE: `${BASE}/notes/admin/addNotes`,
+  NOTEDETAILS: `${BASE}/notes/noteDetails`,
+  UPDATENOTE: `${BASE}/notes/admin/updateNote`,
+  DELETENOTE: `${BASE}/notes/admin/deleteNotes`,
+
+  LIKE: `${BASE}/like/like`,
+  DISLIKE: `${BASE}/like/dislike`,
 }
 
 function error (err, fail) {
@@ -37,7 +43,7 @@ function error (err, fail) {
       fail(err.response.data.error, err.response.status, err.response.headers)
     } else {
       // 默认处理错误请求方法
-      alert.error(err.response.data.message || err.response.data.status + ':' + err.response.data.error)
+      alert.error(err.response.data.message || err.response.status + ': ' + err.response.statusText)
     }
   } else {
     alert.error(err.message)
@@ -52,6 +58,32 @@ async function handler (promise, fail) {
     error(err, fail)
   }
 }
+
+// 添加一个请求拦截器
+axios.interceptors.request.use(config => {
+  // Do something before request is sent
+  let user = Storage.getItem('user')
+  if (user && user.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+    config.headers.Authorization = user.token
+  }
+  return config
+}, error => {
+  // Do something with request error
+  return Promise.reject(error)
+})
+
+// 添加一个响应拦截器
+axios.interceptors.response.use(function (response) {
+  // Do something with response data
+  return response
+}, function (error) {
+  // Do something with response error
+  console.log(error.response)
+  if (error.response.status === 401 && error.response.data.type === 'auth_error') {
+    Storage.removeItem('user')
+  }
+  return Promise.reject(error)
+});
 
 export default {
   // 上传七牛云
@@ -71,6 +103,14 @@ export default {
   async register (params, fail) {
     return await handler(axios.post(URL.REGISTER, params), fail)
   },
+  async getUserInfo (id, fail) {
+    let url = `${URL.USERINFO}/${id}`
+    return await handler(axios.get(url), fail)
+  },
+  async resetPassword (id, params, fail) {
+    let url = `${URL.RESETPASSWORD}/${id}`
+    return await handler(axios.put(url, params), fail)
+  },
   async getMemos (fail) {
     return await handler(axios.get(URL.MEMOS), fail)
   },
@@ -79,6 +119,12 @@ export default {
   },
   async getHotNotes (fail) {
     return await handler(axios.get(URL.HOTNOTES), fail)
+  },
+  async likeNote (params, fail) {
+    return await handler(axios.post(URL.LIKE, params), fail)
+  },
+  async dislikeNote (params, fail) {
+    return await handler(axios.post(URL.DISLIKE, params), fail)
   },
   // 管理后台
   // 便笺管理
@@ -89,7 +135,7 @@ export default {
     return await handler(axios.post(URL.ADDMEMO, params), fail)
   },
   async deleteMemo (id, fail) {
-    let url = `${URL.DELETEMEMO}${id}`
+    let url = `${URL.DELETEMEMO}/${id}`
     return await handler(axios.delete(url), fail)
   },
   // 笔记管理
@@ -97,15 +143,15 @@ export default {
     return await handler(axios.post(URL.ADDNOTE, params), fail)
   },
   async getNoteDetails (id, fail) {
-    let url = `${URL.NOTEDETAILS}${id}`
+    let url = `${URL.NOTEDETAILS}/${id}`
     return await handler(axios.get(url), fail)
   },
   async updateNote (id, params, fail) {
-    let url = `${URL.UPDATENOTE}${id}`
+    let url = `${URL.UPDATENOTE}/${id}`
     return await handler(axios.put(url, params), fail)
   },
   async deleteNote (id, fail) {
-    let url = `${URL.DELETENOTE}${id}`
+    let url = `${URL.DELETENOTE}/${id}`
     return await handler(axios.delete(url), fail)
   },
 }
