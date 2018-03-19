@@ -18,6 +18,7 @@ const URL = {
   LOGIN: `${BASE}/users/login`,
   USERINFO: `${BASE}/users/userDetails`,
   RESETPASSWORD: `${BASE}/users/resetPassword`,
+  CHANGEAVATAR: `${BASE}/users/changeAvatar`,
 
   MEMOS: `${BASE}/memos/all`,
   ADDMEMO: `${BASE}/memos/admin/addMemos`,
@@ -33,6 +34,11 @@ const URL = {
 
   LIKE: `${BASE}/like/like`,
   DISLIKE: `${BASE}/like/dislike`,
+
+  ADDCOMMENT: `${BASE}/comments/addComment`,
+  COMMENTLIST: `${BASE}/comments/commentList`,
+  ADDREPLY: `${BASE}/replies/addReply`,
+  REPLYLIST: `${BASE}/replies/replyList`
 }
 
 function error (err, fail) {
@@ -83,7 +89,7 @@ axios.interceptors.response.use(function (response) {
     Storage.removeItem('user')
   }
   return Promise.reject(error)
-});
+})
 
 export default {
   // 上传七牛云
@@ -111,6 +117,10 @@ export default {
     let url = `${URL.RESETPASSWORD}/${id}`
     return await handler(axios.put(url, params), fail)
   },
+  async changeAvatar (id, params, fail) {
+    let url = `${URL.CHANGEAVATAR}/${id}`
+    return await handler(axios.put(url, params), fail)
+  },
   async getMemos (fail) {
     return await handler(axios.get(URL.MEMOS), fail)
   },
@@ -125,6 +135,18 @@ export default {
   },
   async dislikeNote (params, fail) {
     return await handler(axios.post(URL.DISLIKE, params), fail)
+  },
+  async addComment (params, fail) {
+    return await handler(axios.post(URL.ADDCOMMENT, params), fail)
+  },
+  async getComments (noteId, fail) {
+    return await handler(axios.get(URL.COMMENTLIST, {params: {id: noteId}}), fail)
+  },
+  async addReply (params, fail) {
+    return await handler(axios.post(URL.ADDREPLY, params), fail)
+  },
+  async getReplies (commentId, fail) {
+    return await handler(axios.get(URL.REPLYLIST, {params: {id: commentId}}), fail)
   },
   // 管理后台
   // 便笺管理

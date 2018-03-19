@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import editorOptions from '@/mixins/memo-editor-option'
+import editorOptions from '../../../mixins/memo-editor-option'
 export default {
   name: 'addMemo',
   mixins: [editorOptions],

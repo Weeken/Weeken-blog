@@ -27,7 +27,7 @@
       <h2>关于网站</h2>
       <div class="item">本站服务端采用 Koa2 + mongoDB 搭建, 客户端采用 Vue2 + vue-router搭建。</div>
       <div class="item">本站分成前台和后台，前台所有访问者都可以浏览，后台仅作者可见。</div>
-      <div class="item">主要功能包括: 管理员, 用户, 笔记, 评论（即将上线）, 文章点赞（即将上线）。</div>
+      <div class="item">主要功能包括: 管理员, 用户, 笔记, 评论, 文章点赞。</div>
       <div class="item">源代码: <a href="https://github.com/Weeken/Weeken-blog" target="_blank">前端代码(Weeken-blog)</a>，<a href="https://github.com/Weeken/blog-management" target="_blank">后端代码(blog-management)</a>，欢迎前来点评，收藏加星。</div>
     </div>
     <div class="about_block">

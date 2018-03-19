@@ -11,9 +11,9 @@
     "axios": "^0.16.2",
     "prismjs": "^1.11.0",
     "vue": "^2.5.13",
-    "vue-cropper-simple": "^1.1.0",
+    "vue-cropper-simple": "^1.1.1",
     "vue-router": "^2.6.0",
-    "vue-wangeditor-simple": "^1.5.43",
+    "vue-wangeditor-simple": "^1.5.53",
     "vuelidate": "^0.5.0"
   },
   "devDependencies": {

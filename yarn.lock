@@ -4865,7 +4865,7 @@ pretty-error@^2.0.2:
     renderkid "^2.0.1"
     utila "~0.4"
 
-prismjs@^1.11.0, prismjs@^1.6.0:
+prismjs@^1.11.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.11.0.tgz#297aef33eb79421bfdb19273a5092ca515970d29"
   optionalDependencies:
@@ -6244,9 +6244,9 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-cropper-simple@^1.1.0:
-  version "1.1.0"
-  resolved "http://registry.npm.taobao.org/vue-cropper-simple/download/vue-cropper-simple-1.1.0.tgz#5a6ea0a3860f90c278e692a5a30caf8b79ea8a81"
+vue-cropper-simple@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/vue-cropper-simple/-/vue-cropper-simple-1.1.1.tgz#723f1352152e1dfe95ed8fa170a8ebc73c79f92b"
   dependencies:
     cropperjs "^1.0.0-rc.2"
 
@@ -6283,12 +6283,6 @@ vue-loader@^14.1.1:
     vue-style-loader "^4.0.1"
     vue-template-es2015-compiler "^1.6.0"
 
-vue-prism@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/vue-prism/-/vue-prism-1.0.5.tgz#6e7777adb2fa11c0a8cb99e0265112a105549550"
-  dependencies:
-    prismjs "^1.6.0"
-
 vue-router@^2.6.0:
   version "2.8.1"
   resolved "http://registry.npm.taobao.org/vue-router/download/vue-router-2.8.1.tgz#9833c9ee57ac83beb0269056fefee71713f20695"
@@ -6311,9 +6305,9 @@ vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "http://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
 
-vue-wangeditor-simple@^1.5.43:
-  version "1.5.43"
-  resolved "https://registry.yarnpkg.com/vue-wangeditor-simple/-/vue-wangeditor-simple-1.5.43.tgz#0f16c21f11d806359105cd150dbe4c6ed58b223a"
+vue-wangeditor-simple@^1.5.53:
+  version "1.5.53"
+  resolved "https://registry.yarnpkg.com/vue-wangeditor-simple/-/vue-wangeditor-simple-1.5.53.tgz#eeb94fdf32f4cd147822530d3deba43a706cfa02"
   dependencies:
     wangeditor "^3.0.14"
 
@@ -6326,8 +6320,8 @@ vuelidate@^0.5.0:
   resolved "http://registry.npm.taobao.org/vuelidate/download/vuelidate-0.5.0.tgz#c315659a023e760d0fb11b6b42b6c3cdf08306c3"
 
 wangeditor@^3.0.14:
-  version "3.0.16"
-  resolved "http://registry.npm.taobao.org/wangeditor/download/wangeditor-3.0.16.tgz#d24690d0108a54becd8d9828b576777b13870b4b"
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/wangeditor/-/wangeditor-3.1.0.tgz#1832b65f661d34ed8de92353c44e2be8120a3837"
 
 watchpack@^1.4.0:
   version "1.4.0"

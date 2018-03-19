@@ -9,7 +9,7 @@
 			</ul>
       <div class="user clear" v-if="user.id">
         <div class="avatar" @click="gotoUserInfo">
-          <img :src="avatar" alt="">
+          <img :src="user.avatar || avatar" alt="">
         </div>
         <div class="user_info">
           <p class="name">{{user.name}}</p>
@@ -26,7 +26,7 @@
     </transition>
     <div class="view" id="view">
       <transition name="fade" mode="out-in">
-        <router-view :user-info="user"></router-view>
+        <router-view :user-info="user" @logout="logout"></router-view>
       </transition>
     </div>
     <!-- <my-footer></my-footer> -->
@@ -78,9 +78,10 @@ export default {
       }
     },
     checkLogin (val) {
-      // this.isLogin = val
-      // this.user = this.$storage.getItem('user')
       this.user = val
+    },
+    logout () {
+      location.reload()
     }
   },
   created () {

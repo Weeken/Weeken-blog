@@ -26,6 +26,13 @@ html,body{
   background-color: #f3f3f3;
 }
 
+img{
+  border: 0;
+}
+img[src=""],img:not([src]){
+  opacity:0;
+}
+
 input{
   /*去除手机浏览器Input内阴影*/
   appearance:button;

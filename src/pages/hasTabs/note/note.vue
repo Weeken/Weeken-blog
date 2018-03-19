@@ -15,7 +15,7 @@
                 <i class="icon like" :class="{'active': item.likeUserId.includes(userInfo.id)}"></i><span class="number">{{item.like}} 赞</span>
               </div>
               <div class="part">
-                <i class="icon comment"></i><span class="number">{{item.comment}} 评论</span>
+                <i class="icon comment"></i><span class="number">{{item.comments}} 评论</span>
               </div>
               <div class="part">
                 <i class="icon read"></i><span class="number">{{item.read}} 浏览</span>
@@ -37,7 +37,7 @@
           <div class="hot_note_info">
             <span><i class="read"></i>{{item.read}}</span>
             <span><i class="like"></i>{{item.like}}</span>
-            <span><i class="comment"></i>{{item.comment}}</span>
+            <span><i class="comment"></i>{{item.comments}}</span>
           </div>
         </div>
       </div>
