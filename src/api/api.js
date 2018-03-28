@@ -69,7 +69,7 @@ async function handler (promise, fail) {
 axios.interceptors.request.use(config => {
   // Do something before request is sent
   let user = Storage.getItem('user')
-  if (user && user.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+  if (user && user.token) { // 判断是否存在token，如果存在的话，则每个http header都加上token
     config.headers.Authorization = user.token
   }
   return config
@@ -175,5 +175,5 @@ export default {
   async deleteNote (id, fail) {
     let url = `${URL.DELETENOTE}/${id}`
     return await handler(axios.delete(url), fail)
-  },
+  }
 }

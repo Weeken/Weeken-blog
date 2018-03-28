@@ -5,36 +5,36 @@ const editorOptions = {
         // width: 1000,
         height: '300px',
         menus: [
-          'head',  // 标题
-          'bold',  // 粗体
-          'italic',  // 斜体
-          'underline',  // 下划线
-          'strikeThrough',  // 删除线
-          'foreColor',  // 文字颜色
-          'backColor',  // 背景颜色
-          'link',  // 插入链接
-          'list',  // 列表
-          'justify',  // 对齐方式
-          'quote',  // 引用
-          'emoticon',  // 表情
-          // 'image',  // 插入图片
-          'table',  // 表格
-          // 'video',  // 插入视频
-          'code',  // 插入代码
-          // 'insertCode',  // 插入代码
+          'head', // 标题
+          'bold', // 粗体
+          'italic', // 斜体
+          'underline', // 下划线
+          'strikeThrough', // 删除线
+          'foreColor', // 文字颜色
+          'backColor', // 背景颜色
+          'link', // 插入链接
+          'list', // 列表
+          'justify', // 对齐方式
+          'quote', // 引用
+          'emoticon', // 表情
+          // 'image', // 插入图片
+          'table', // 表格
+          // 'video', // 插入视频
+          'code', // 插入代码
+          // 'insertCode', // 插入代码
           'clearStyle', // 清除文字的样式
           'clearFormat', // 清除文字的格式
           'clearAll', // 一键清空编辑器
-          'undo',  // 撤销
-          'redo',  // 重复
+          'undo', // 撤销
+          'redo', // 重复
           'fullscreen' // 全屏
         ],
-        pasteFilterStyle: true  // 关闭粘贴样式的过滤
+        pasteFilterStyle: true // 关闭粘贴样式的过滤
         // uploadImgServer: 'https://up-z2.qbox.me/',
         // uploadFileName: 'file',
         // uploadImgMaxLength: 1,
         // uploadImgParams: {
-        //   token: ''   // 属性值会自动进行 encode ，此处无需 encode
+        //   token: '' // 属性值会自动进行 encode ，此处无需 encode
         // },
         // uploadImgParamsWithUrl: true,
         // uploadImgHooks: {

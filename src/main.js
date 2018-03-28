@@ -1,4 +1,6 @@
-import Vue from 'vue/dist/vue.js'
+import 'babel-polyfill'
+require('es6-promise').polyfill()
+import Vue from 'vue'
 import Router from 'vue-router'
 import App from './App'
 import routes from './router'
@@ -26,6 +28,7 @@ Vue.prototype.$storage = Storage
 Vue.prototype.$prism = Prism
 Vue.prototype.Alert = new Alert()
 
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router: new Router(routes),

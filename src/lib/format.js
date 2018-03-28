@@ -1,7 +1,7 @@
 export default {
 
   pad (num) {
-    return num < 10 ? `0${num}` : '' + `${num}`  // 小于10补上0
+    return num < 10 ? `0${num}` : '' + `${num}` // 小于10补上0
   },
 
   filtTime (duratin) {
