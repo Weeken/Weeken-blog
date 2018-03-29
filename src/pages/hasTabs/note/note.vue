@@ -3,12 +3,12 @@
     <div class="list">
       <div class="item_wrap">
         <transition-group name="translateX" mode="out-in">
-          <div class="note_item" v-for="item in notes" :key="item._id" v-if="notes.length > 0">
+          <div class="note_item" v-for="item in notes" :key="item._id" v-if="notes.length > 0" @click="readNote(item._id)">
             <div class="info clear">
               <div class="tag">分类：<span>{{item.tag}}</span></div>
               <div class="time">创建时间：{{item.time | time}}</div>
             </div>
-            <h2 class="title" @click="readNote(item._id)">{{item.title}}</h2>
+            <h2 class="title">{{item.title}}</h2>
             <p class="abstract">{{item.abstract}}</p>
             <div class="item_bottom">
               <div class="part">
