@@ -7,7 +7,7 @@ let alert = new Alert()
 const Envs = {
   development: 'http://localhost:3000',
   // development: 'http://192.168.0.104:3000',
-  production: 'http://weeken.top'
+  production: 'http://www.weeken.top'
 }
 
 const BASE = `${Envs[process.env.NODE_ENV]}/v1`
