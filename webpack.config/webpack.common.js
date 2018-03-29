@@ -29,7 +29,8 @@ module.exports = {
       'components': resolve('src/components'),
       'css': resolve('src/css'),
       'pages': resolve('src/pages'),
-      'images': resolve('src/assets/images')
+      'api': resolve('src/api'),
+      'lib': resolve('src/lib')
     }
   },
   optimization: {

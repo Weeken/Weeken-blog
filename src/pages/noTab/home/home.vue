@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import Loading from '../../../components/loading'
-import { Circle } from '../../../lib/canvas'
+import Loading from 'components/loading'
+import { Circle } from 'lib/canvas'
 let loading
 window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame
 export default {

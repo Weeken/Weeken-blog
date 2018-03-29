@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import Pagination from '../../../components/pagination/pagination'
-import Format from '../../../lib/format'
+import Pagination from 'components/pagination/pagination'
+import Format from 'lib/format'
 export default {
   name: 'noteList',
   components: { Pagination },

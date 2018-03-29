@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import Pagination from '../../../components/pagination/pagination'
+import Pagination from 'components/pagination/pagination'
 export default {
   name: 'Note',
   props: ['userInfo'],

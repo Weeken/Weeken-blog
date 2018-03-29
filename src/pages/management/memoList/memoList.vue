@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import Pagination from '../../../components/pagination/pagination'
+import Pagination from 'components/pagination/pagination'
 export default {
   name: 'memoList',
   components: { Pagination },

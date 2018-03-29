@@ -1,5 +1,4 @@
-// const Nav = resolve => require(['../components/navigator'], resolve)
-import Nav from '../components/navigator'
+import Nav from 'components/navigator'
 
 let options = {
   routes: []

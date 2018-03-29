@@ -1,6 +1,6 @@
 import axios from 'axios'
-import {Alert} from '../lib/alert'
-import Storage from '../lib/local_storage'
+import {Alert} from 'lib/alert'
+import Storage from 'lib/local_storage'
 
 let alert = new Alert()
 

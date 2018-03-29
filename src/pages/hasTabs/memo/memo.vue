@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import Loading from '../../../components/loading'
+import Loading from 'components/loading'
 let loading
 export default {
   name: 'Memo',
