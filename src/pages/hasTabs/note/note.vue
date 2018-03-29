@@ -47,7 +47,6 @@
 
 <script>
 import Pagination from '../../../components/pagination/pagination'
-import Format from '../../../lib/format'
 export default {
   name: 'Note',
   props: ['userInfo'],
@@ -58,11 +57,6 @@ export default {
       notes: [],
       pageCount: 0,
       currentPage: 1
-    }
-  },
-  filters: {
-    time (stamp) {
-      return Format.formatDate(stamp, '-', 'minute')
     }
   },
   methods: {
@@ -140,6 +134,7 @@ export default {
           background: #fff;
           border-radius: 5px;
           margin-bottom: 10px;
+          cursor: pointer;
 
           &.none{
             height: 500px;

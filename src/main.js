@@ -15,6 +15,7 @@ import VueWangeditor from 'vue-wangeditor-simple'
 import 'prismjs/themes/prism.css'
 import Prism from 'prismjs/prism'
 import 'prismjs/components/prism-less'
+import Filter from './filters/filter'
 
 Vue.use(Router)
 Vue.use(Validation)

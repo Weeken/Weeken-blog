@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Format from '../lib/format'
 
-let a = Vue.filter('date', stamp => {
-  return Format.formatDate(stamp * 1000, '-', 'date')
+let a = Vue.filter('time', stamp => {
+  return Format.formatDate(stamp, '-', 'minute')
 })
 
 export default {a}

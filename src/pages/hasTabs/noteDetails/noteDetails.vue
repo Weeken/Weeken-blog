@@ -46,12 +46,12 @@
               </div>
               <!-- 第一个回复 -->
               <div v-else class="comment_first_reply">
-                <span v-if="userInfo.id && userInfo.id !== comment.userId && showFirstReplyId !== comment._id" @click="showReply('FirstReply', comment._id, comment.userId)">回复</span>
+                <span v-if="userInfo.id && userInfo.id !== comment.userId && showFirstReplyId !== comment._id" @click="showReply('FirstReply', comment._id, null, comment.userId)">回复</span>
                 <span v-if="showFirstReplyId === comment._id" @click="hideReply('FirstReply', comment._id)">收起</span>
                 <span v-if="showFirstReplyId === comment._id" @click="addReply">提交</span>
               </div>
               <transition name="scaleY" mode="out-in">
-                <textarea class="discuss_first_reply_content" v-if="showFirstReplyId.includes(comment._id)" v-model="reply.content"></textarea>
+                <textarea class="discuss_first_reply_content" v-if="showFirstReplyId === comment._id" v-model="reply.content"></textarea>
               </transition>
               <!-- 回复列表 -->
               <transition name="scaleY" mode="out-in">
@@ -104,8 +104,6 @@
 </template>
 
 <script>
-// import defaultUser from "../assets/user.png"
-import Format from '../../../lib/format'
 import commentEditorOption from '../../../mixins/comment-editor-option'
 export default {
   name: 'noteDetails',
@@ -139,11 +137,6 @@ export default {
       }
     }
   },
-  filters: {
-    time (stamp) {
-      return Format.formatDate(stamp, '-', 'minute')
-    }
-  },
   methods: {
     back () {
       this.$router.push('/note')
@@ -169,9 +162,9 @@ export default {
     },
     // 显示/隐藏回复
     showReply (type, commentId, replyId, observerId) {
-      this[`show${type}Id`] = replyId
+      this[`show${type}Id`] = replyId || commentId
       this.reply.commentId = commentId
-      this.reply.observerId = observerId
+      if (observerId) this.reply.observerId = observerId
       this.reply.replierId = this.userInfo.id
     },
     hideReply (type) {
@@ -247,7 +240,7 @@ export default {
         this.Alert.success('回复成功')
         this.hideReply('Reply')
         this.hideReply('FirstReply')
-        this.getComments(this.reply.commentId)
+        this.getComments(this.$route.query.id)
       }
     }
   },

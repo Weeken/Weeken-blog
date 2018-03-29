@@ -79,6 +79,7 @@ export default {
     },
     checkLogin (val) {
       this.user = val
+      location.reload()
     },
     logout () {
       location.reload()
