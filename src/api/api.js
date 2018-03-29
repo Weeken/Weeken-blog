@@ -6,7 +6,6 @@ let alert = new Alert()
 
 const Envs = {
   development: 'http://localhost:3000',
-  // development: 'http://192.168.0.104:3000',
   production: 'http://www.weeken.top'
 }
 
