@@ -302,7 +302,7 @@ export default {
         }
       }
       .side-back .desc{
-        .p_wrap > p{
+        .p_wrap > p，.p_wrap > ul,.p_wrap > ol{
            margin-bottom: 5px;
            font-size: 12px;
            line-height: 16px;
