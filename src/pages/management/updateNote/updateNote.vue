@@ -20,7 +20,7 @@
 
       <div class="filed">
         <label class="required">文章内容：</label>
-        <vue-wangeditor id="editor" :options="editorOptions" v-model="note.content"></vue-wangeditor>
+        <vue-wangeditor id="editor" :options="editorOptions" v-model="note.content" :init-content="initContent"></vue-wangeditor>
       </div>
 
       <div class="filed">
@@ -39,6 +39,7 @@ export default {
   data () {
     return {
       token: '',
+      initContent: '',
       note: {
         title: '',
         tag: '',
@@ -57,6 +58,7 @@ export default {
     },
     async getNoteDetails () {
       this.note = (await this.$http.getNoteDetails(this.$route.query.id)).data
+      this.initContent = this.note.content
     },
     async submitNote () {
       let res = await this.$http.updateNote(this.$route.query.id, this.note)
