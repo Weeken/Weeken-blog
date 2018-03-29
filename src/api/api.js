@@ -10,7 +10,7 @@ const Envs = {
   production: 'http://www.weeken.top'
 }
 
-const BASE = `${Envs[process.env.NODE_ENV]}/v1`
+const BASE = `${Envs[process.env.NODE_ENV]}/v1/api`
 
 const URL = {
   TOKEN: `${BASE}/token`,
