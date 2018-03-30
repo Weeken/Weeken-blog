@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div v-show="showPage">
     <div class="banner">
       <h3>If you want to understand a knowledge, the first to admit his own ignorance.</h3>
       <div class="card1"><img src="../../../assets/card1.jpg" alt=""></div>
@@ -52,6 +52,7 @@ export default {
   name: 'Memo',
   data () {
     return {
+      showPage: false,
       memos: [],
       imageUrls: []
     }
@@ -152,6 +153,7 @@ export default {
           if (num === len) {
             if (loading) loading.hide()
             this.showMemos()
+            this.showPage = true
           }
         }
       })
