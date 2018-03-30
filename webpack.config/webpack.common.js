@@ -1,8 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
+// const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const PurifyCSSPlugin = require('purifycss-webpack');
+const HappyPack = require('happypack')
+const os = require('os')
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -30,7 +35,9 @@ module.exports = {
       'css': resolve('src/css'),
       'pages': resolve('src/pages'),
       'api': resolve('src/api'),
-      'lib': resolve('src/lib')
+      'lib': resolve('src/lib'),
+      'prismcss': 'prismjs/themes/prism.css',
+      'prismless': 'prismjs/components/prism-less'
     }
   },
   optimization: {
@@ -39,7 +46,10 @@ module.exports = {
         commons: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
-          chunks: 'all'
+          chunks: 'all',
+          minChunks: 2,
+          maxInitialRequests: 5, // The default limit is too small to showcase the effect
+          minSize: 0 // This is example is too small to create commons chunks
         }
       }
     }
@@ -52,14 +62,15 @@ module.exports = {
       },
       {
         test: /\.js$/,
+        include: [resolve('src')],
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader']
+        use: ['happypack/loader?id=happy-babel-js', 'eslint-loader']
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'postcss-loader']
+          use: [{loader: 'css-loader', options: {minimize: true}}, 'postcss-loader']
         })
       },
       {
@@ -67,7 +78,9 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [ 'css-loader', 'postcss-loader', 'less-loader' ]
-        })
+        }),
+        include: resolve('src'), //限制范围，提高打包速度
+        exclude: /node_modules/
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -95,7 +108,7 @@ module.exports = {
     //   notie: 'notie'
     // }),
     new ExtractTextPlugin({
-      filename: 'css/[name].[contenthash].css',
+      filename: 'css/[name].[hash].css',
       allChunks: true
     }),
     new CleanWebpackPlugin(['dist'], {root: resolve('/')}), // 清理dist目录
@@ -109,6 +122,15 @@ module.exports = {
         removeAttributeQuotes: true
       }
     }),
+    new HappyPack({
+      id: 'happy-babel-js',
+      loaders: ['babel-loader?cacheDirectory=true'],
+      threadPool: happyThreadPool
+    }),
     new webpack.HashedModuleIdsPlugin()
+    // new PurifyCSSPlugin({ // 去除无用的css --> 经测试，去除了很多有用的css
+    //   // 路径扫描 nodejs内置 路径检查
+    //   paths: glob.sync(path.join(__dirname, 'src/*/*.html'))
+    // })
   ]
 };

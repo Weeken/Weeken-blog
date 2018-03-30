@@ -218,7 +218,7 @@ export default {
         border-bottom: 2px solid #fff;
         margin-right: 80px;
         width: 0px;
-        & > a{ color: #fff; }
+        & > a{ color: #fff; text-decoration: none; }
         &:hover{
           width: 80px;
           margin-right: 0px;

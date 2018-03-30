@@ -168,7 +168,6 @@ export default {
 @font-face {
   font-family: "Pacifico";
   src: url("../../../assets/font/Pacifico-Regular.ttf");
-  // src: url("../../assets/font/DancingScript-Regular.ttf");
   font-display: swap;
 }
 .banner{

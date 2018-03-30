@@ -15,6 +15,9 @@ module.exports = merge(common, {
     compress: true,
     progress: true
   },
+  output: {
+    publicPath: '/'
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ]

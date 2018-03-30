@@ -11,10 +11,10 @@ import Storage from 'lib/local_storage'
 import Validation from 'vuelidate'
 import VueCropper from 'vue-cropper-simple'
 import VueWangeditor from 'vue-wangeditor-simple'
-import 'prismjs/themes/prism.css'
+import 'prismcss'
 import Prism from 'prismjs/prism'
-import 'prismjs/components/prism-less'
-import Filter from './filters/filter'
+import 'prismless'
+import './filters/filter'
 
 Vue.use(Router)
 Vue.use(Validation)
