@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/images/icn-close.png"
   },
   {
-    "url": "/js/sw.f1df9ae61180990e4fde.js"
+    "url": "/js/sw.c93fcaf9ff51e102ff19.js"
   },
   {
     "revision": "c3c99656278c5c3d39b10221419a3120",
@@ -15,11 +15,11 @@ self.__precacheManifest = [
     "url": "/images/bg.jpg"
   },
   {
-    "revision": "8f02850b6ed0775ee828dfc737b2e30a",
+    "revision": "f14ced6949fdabcc8a951a82c82ac6c3",
     "url": "/index.html"
   },
   {
-    "url": "/js/app.f1df9ae61180990e4fde.js"
+    "url": "/js/app.c93fcaf9ff51e102ff19.js"
   },
   {
     "revision": "fbc92b969d4aa8ee38ef7c8043ffca37",
@@ -78,6 +78,6 @@ self.__precacheManifest = [
     "url": "/fonts/DancingScript-Bold.69cb5ff.ttf"
   },
   {
-    "url": "/css/app.f1df9ae61180990e4fde.css"
+    "url": "/css/app.c93fcaf9ff51e102ff19.css"
   }
 ];
