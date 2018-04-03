@@ -6,7 +6,7 @@ let alert = new Alert()
 
 const Envs = {
   development: 'http://localhost:3000',
-  production: 'http://weeken.top'
+  production: 'https://weeken.top'
 }
 
 const BASE = `${Envs[process.env.NODE_ENV]}/v1/api`
