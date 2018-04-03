@@ -3,5 +3,5 @@ import updateNote from './updateNote'
 export default {
   path: '/updateNote',
   name: 'updateNote',
-  component: updateNote
+  component: () => import('./updateNote')
 }

@@ -1,5 +1,3 @@
-import Nav from 'components/navigator'
-
 let options = {
   routes: []
 }
@@ -14,7 +12,7 @@ let management = (r => {
 
 let hasNav = {
   path: '/nav',
-  component: Nav,
+  component: () => import('components/navigator'),
   name: 'nav',
   children: (r => {
     return r.keys().map(key => r(key).default)
