@@ -1,4 +1,4 @@
-const dev = require('./webpack.dev.js');
+const dev = require('./webpack.dev.config.js');
 const merge = require('webpack-merge');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 

@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/images/card2.jpg"
   },
   {
-    "url": "/js/app.4310af5dede905cb4098.js"
+    "url": "/js/app.3d3e37f35ca0b2fa8cb5.js"
   },
   {
     "revision": "c3c99656278c5c3d39b10221419a3120",
@@ -15,7 +15,7 @@ self.__precacheManifest = [
     "url": "/images/bg.jpg"
   },
   {
-    "revision": "2e41ab7f11c68474b93078b0a838083b",
+    "revision": "0b6fb347fa4091830d07ce005661519d",
     "url": "/index.html"
   },
   {
@@ -75,6 +75,6 @@ self.__precacheManifest = [
     "url": "/fonts/DancingScript-Bold.69cb5ff.ttf"
   },
   {
-    "url": "/css/app.4310af5dede905cb4098.css"
+    "url": "/css/app.3d3e37f35ca0b2fa8cb5.css"
   }
 ];

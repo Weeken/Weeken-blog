@@ -58,7 +58,7 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        use: ['vue-loader']
+        use: ['happypack/loader?id=vue']
       },
       {
         test: /\.js$/,
@@ -77,7 +77,7 @@ module.exports = {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [ 'css-loader', 'postcss-loader', 'less-loader' ]
+          use: [ {loader: 'css-loader', options: {minimize: true}}, 'postcss-loader', 'less-loader' ]
         }),
         include: resolve('src'), //限制范围，提高打包速度
         exclude: /node_modules/
@@ -107,6 +107,11 @@ module.exports = {
     //   axios: 'axios',
     //   notie: 'notie'
     // }),
+    new webpack.DllReferencePlugin({
+      //这里写上一步打包出的json路径
+      name: '.src/dll/vue.dll.js',
+      manifest: require('../src/dll/vue-manifest.json')
+    }),
     new ExtractTextPlugin({
       filename: 'css/[name].[hash].css',
       allChunks: true
@@ -116,6 +121,7 @@ module.exports = {
       favicon: resolve('src/assets/logo.ico'),
       template: 'index.html',
       inject: true,
+      chunks: ['app'],
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -125,6 +131,11 @@ module.exports = {
     new HappyPack({
       id: 'happy-babel-js',
       loaders: ['babel-loader?cacheDirectory=true'],
+      threadPool: happyThreadPool
+    }),
+    new HappyPack({
+      id: 'vue',
+      loaders: ['vue-loader'],
       threadPool: happyThreadPool
     }),
     new webpack.HashedModuleIdsPlugin()

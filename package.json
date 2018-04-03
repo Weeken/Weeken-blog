@@ -4,12 +4,12 @@
   "version": "1.0.0",
   "description": "XPay-official app",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.config/webpack.dev.js",
-    "build": "webpack --config webpack.config/webpack.prod.js",
-    "staging": "webpack --config webpack.config/webpack.staging.js",
-    "pwa-dev": "webpack-dev-server --open --config webpack.config/webpack.pwa.dev.js",
-    "pwa-build": "webpack --config webpack.config/webpack.pwa.build.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dll": "webpack --config webpack.config/webpack.dll.config.js",
+    "dev": "webpack-dev-server --config webpack.config/webpack.dev.config.js",
+    "build": "webpack --config webpack.config/webpack.prod.config.js",
+    "staging": "webpack --config webpack.config/webpack.staging.config.js",
+    "pwa-dev": "webpack-dev-server --open --config webpack.config/webpack.pwa.dev.config.js",
+    "pwa-build": "webpack --config webpack.config/webpack.pwa.build.config.js"
   },
   "keywords": [],
   "author": "Weeken",
@@ -45,6 +45,7 @@
     "purify-css": "^1.2.5",
     "purifycss-webpack": "^0.7.0",
     "style-loader": "^0.20.3",
+    "uglifyjs-webpack-plugin": "^1.2.4",
     "vue-loader": "^14.2.1",
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
