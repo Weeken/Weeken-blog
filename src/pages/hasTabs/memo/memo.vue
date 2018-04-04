@@ -309,11 +309,11 @@ export default {
            line-height: 16px;
         }
         .p_wrap > ul {
-          padding-left: 10px;
+          padding-left: 20px;
           & > li { list-style: disc; }
         }
         .p_wrap > ol {
-          padding-left: 10px;
+          padding-left: 20px;
           & > li { list-style: decimal; }
         }
         h6{
