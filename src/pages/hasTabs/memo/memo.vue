@@ -308,6 +308,14 @@ export default {
            font-size: 12px;
            line-height: 16px;
         }
+        .p_wrap > ul {
+          padding-left: 10px;
+          & > li { list-style: disc; }
+        }
+        .p_wrap > ol {
+          padding-left: 10px;
+          & > li { list-style: decimal; }
+        }
         h6{
           margin-bottom: 15px;
           font: bold 14px/1 'weiruanyahei';
