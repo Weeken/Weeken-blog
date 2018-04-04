@@ -20,16 +20,10 @@ const URL = {
   CHANGEAVATAR: `${BASE}/users/changeAvatar`,
 
   MEMOS: `${BASE}/memos/all`,
-  ADDMEMO: `${BASE}/memos/admin/addMemos`,
-  MEMOLIST: `${BASE}/memos/admin/memoList`,
-  DELETEMEMO: `${BASE}/memos/admin/deleteMemos`,
 
   NOTES: `${BASE}/notes/all`,
   HOTNOTES: `${BASE}/notes/hotNotes`,
-  ADDNOTE: `${BASE}/notes/admin/addNotes`,
   NOTEDETAILS: `${BASE}/notes/noteDetails`,
-  UPDATENOTE: `${BASE}/notes/admin/updateNote`,
-  DELETENOTE: `${BASE}/notes/admin/deleteNotes`,
 
   LIKE: `${BASE}/like/like`,
   DISLIKE: `${BASE}/like/dislike`,
@@ -126,6 +120,10 @@ export default {
   async getNotes (page, fail) {
     return await handler(axios.get(URL.NOTES, {params: {page: page}}), fail)
   },
+  async getNoteDetails (id, fail) {
+    let url = `${URL.NOTEDETAILS}/${id}`
+    return await handler(axios.get(url), fail)
+  },
   async getHotNotes (fail) {
     return await handler(axios.get(URL.HOTNOTES), fail)
   },
@@ -146,33 +144,5 @@ export default {
   },
   async getReplies (commentId, fail) {
     return await handler(axios.get(URL.REPLYLIST, {params: {id: commentId}}), fail)
-  },
-  // 管理后台
-  // 便笺管理
-  async getMemoList (page, fail) {
-    return await handler(axios.get(URL.MEMOLIST, {params: {page: page}}), fail)
-  },
-  async addMemos (params, fail) {
-    return await handler(axios.post(URL.ADDMEMO, params), fail)
-  },
-  async deleteMemo (id, fail) {
-    let url = `${URL.DELETEMEMO}/${id}`
-    return await handler(axios.delete(url), fail)
-  },
-  // 笔记管理
-  async addNotes (params, fail) {
-    return await handler(axios.post(URL.ADDNOTE, params), fail)
-  },
-  async getNoteDetails (id, fail) {
-    let url = `${URL.NOTEDETAILS}/${id}`
-    return await handler(axios.get(url), fail)
-  },
-  async updateNote (id, params, fail) {
-    let url = `${URL.UPDATENOTE}/${id}`
-    return await handler(axios.put(url, params), fail)
-  },
-  async deleteNote (id, fail) {
-    let url = `${URL.DELETENOTE}/${id}`
-    return await handler(axios.delete(url), fail)
   }
 }

@@ -216,7 +216,6 @@ export default {
         white-space: nowrap;
         transition: all .2s linear;
         border-bottom: 2px solid #fff;
-        margin-right: 80px;
         width: 0px;
         & > a{ color: #fff; text-decoration: none; }
         &:hover{

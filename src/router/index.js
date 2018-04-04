@@ -6,10 +6,6 @@ let noNav = (r => {
   return r.keys().map(key => r(key).default)
 })(require.context('../pages/', true, /^\.\/noTab\/([\s\S])+\/route\.js$/))
 
-let management = (r => {
-  return r.keys().map(key => r(key).default)
-})(require.context('../pages/', true, /^\.\/management\/([\s\S])+\/route\.js$/))
-
 let hasNav = {
   path: '/nav',
   component: () => import('components/navigator'),
@@ -19,7 +15,7 @@ let hasNav = {
   })(require.context('../pages/', true, /^\.\/hasTabs\/([\s\S])+\/route\.js$/))
 }
 
-options.routes = [...noNav, ...management]
+options.routes = [...noNav]
 options.routes.push({path: '/', redirect: '/home'})
 options.routes.push(hasNav)
 
