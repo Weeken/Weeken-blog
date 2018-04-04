@@ -30,7 +30,7 @@ const editorOptions = {
           'fullscreen' // 全屏
         ],
         pasteFilterStyle: true, // 关闭粘贴样式的过滤
-        uploadImgServer: 'https://up-z2.qbox.me/',
+        uploadImgServer: 'https://upload-z2.qiniup.com/',
         uploadFileName: 'file',
         uploadImgMaxLength: 1,
         uploadImgParams: {
