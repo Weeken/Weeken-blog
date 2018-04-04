@@ -48,7 +48,7 @@ const editorOptions = {
           // },
           customInsert: (insertImg, result/* , editor */) => {
             // console.log(insertImg)
-            let url = `http://p0ry9w0d5.bkt.clouddn.com/${result.key}`
+            let url = `https://images.weeken.top/${result.key}`
             insertImg(url)
           }
         }

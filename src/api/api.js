@@ -96,7 +96,7 @@ export default {
     return await handler(axios.get(URL.TOKEN), fail)
   },
   async upload (token, formdata, fail) {
-    let url = `http://up-z2.qiniu.com/?token=${token}`
+    let url = `https://up-z2.qiniu.com/?token=${token}`
     let config = {
       headers: { 'Content-Type': 'multipart/form-data' }
     }

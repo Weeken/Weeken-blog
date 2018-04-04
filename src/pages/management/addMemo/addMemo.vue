@@ -71,7 +71,7 @@ export default {
       if (res) {
         formdata.delete('file')
         this.originImg = this.createNativePic(file)
-        this.memo.src = `http://p0ry9w0d5.bkt.clouddn.com/${res.key}`
+        this.memo.src = `https://images.weeken.top/${res.key}`
         this.isShow = true
         this.$refs.file.value = ''
       }
