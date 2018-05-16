@@ -145,11 +145,10 @@ export default {
         img.src = item
         img.onerror = () => {
           console.log('error')
-          return
         }
         img.onload = () => {
           img.onload = null
-          num ++
+          num++
           if (num === len) {
             if (loading) loading.hide()
             this.showMemos()

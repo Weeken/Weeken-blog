@@ -11,17 +11,16 @@ export default {
   methods: {
     scrollToTop () {
       let timer = setInterval(() => {
-        //获取滚动条距离顶部的高度
+        // 获取滚动条距离顶部的高度
         let view = document.querySelector('#view')
         let osTop = view.scrollTop
         let speed = Math.floor(-osTop / 5)
         view.scrollTop = osTop + speed
-
-        if(osTop === 0){
+        if (osTop === 0) {
           clearInterval(timer)
         }
       }, 30)
-    },
+    }
   }
 }
 </script>

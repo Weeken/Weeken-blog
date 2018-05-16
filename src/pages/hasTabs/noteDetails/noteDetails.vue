@@ -221,7 +221,6 @@ export default {
     async tuggleLike (type) {
       if (!this.userInfo.id) {
         this.Alert.error('请先登录')
-        return
       } else {
         let params = {
           noteId: this.$route.query.id,

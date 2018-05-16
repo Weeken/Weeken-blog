@@ -39,7 +39,7 @@
 
 <script>
 // import MyFooter from './footer'
-import defaultUser from "../assets/user.png"
+import defaultUser from '../assets/user.png'
 import Login from './login'
 import Register from './register'
 import BackToTop from './backToTop/backToTop'

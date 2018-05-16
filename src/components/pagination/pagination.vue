@@ -34,13 +34,13 @@ export default {
     },
     // 当前分页区间号
     currentList () {
-      return this.currentPage >=5 && this.currentPage % 5 === 0 ? ~~(this.currentPage / 5) : ~~(this.currentPage / 5 + 1)
+      return this.currentPage >= 5 && this.currentPage % 5 === 0 ? ~~(this.currentPage / 5) : ~~(this.currentPage / 5 + 1)
     },
     // 当前分页区间
     currentPageList () {
       let list = []
       if (this.pageCount <= 5) {
-        for (let i = 1; i <= this.pageCount; i ++) {
+        for (let i = 1; i <= this.pageCount; i++) {
           list.push(i)
         }
       } else {
@@ -51,7 +51,7 @@ export default {
           }
         })
       }
-      return list.filter(n => {return n}) // forEach(), filter(), reduce(), every() 和some()都会跳过空位。
+      return list.filter(n => { return n }) // forEach(), filter(), reduce(), every() 和some()都会跳过空位。
     }
   },
   watch: {
@@ -65,11 +65,12 @@ export default {
       this.currentPage = i
     },
     pre () {
-      if (this.currentPage <= 1) {
-        return
-      } else {
-        this.currentPage -= 1
-      }
+      // if (this.currentPage <= 1) {
+      //   return
+      // } else {
+      //   this.currentPage -= 1
+      // }
+      if (this.currentPage > 1) this.currentPage -= 1
     },
     next () {
       if (this.currentPage >= this.pageCount) {

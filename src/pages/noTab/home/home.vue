@@ -41,7 +41,7 @@ export default {
     preloadImg () {
       let style = this.bg.currentStyle || window.getComputedStyle(this.bg, false)
       let img = new Image()
-      img.src = style.backgroundImage.slice(4, -1).replace(/"/g, "")
+      img.src = style.backgroundImage.slice(4, -1).replace(/"/g, '')
       if (img.complete) {
         // console.log('complete')
         setTimeout(() => {

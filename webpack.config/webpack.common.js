@@ -43,7 +43,7 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        commons: {
+        vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
           chunks: 'all',
@@ -64,23 +64,21 @@ module.exports = {
         test: /\.js$/,
         include: [resolve('src')],
         exclude: /node_modules/,
-        use: ['happypack/loader?id=happy-babel-js', 'eslint-loader']
+        use: ['happypack/loader?id=js']
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [{loader: 'css-loader', options: {minimize: true}}, 'postcss-loader']
+          use: ['happypack/loader?id=css']
         })
       },
       {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [ {loader: 'css-loader', options: {minimize: true}}, 'postcss-loader', 'less-loader' ]
-        }),
-        include: resolve('src'), //限制范围，提高打包速度
-        exclude: /node_modules/
+          use: ['happypack/loader?id=less']
+        })
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -109,14 +107,14 @@ module.exports = {
     // }),
     new webpack.DllReferencePlugin({
       //这里写上一步打包出的json路径
-      name: '.src/dll/vue.dll.js',
-      manifest: require('../src/dll/vue-manifest.json')
+      context: __dirname,
+      manifest: require('../dist/dll/vue-manifest.json')
     }),
     new ExtractTextPlugin({
       filename: 'css/[name].[hash].css',
       allChunks: true
     }),
-    new CleanWebpackPlugin(['dist'], {root: resolve('/')}), // 清理dist目录
+    new CleanWebpackPlugin(['dist/css', 'dist/js', 'dist/fonts', 'dist/images', 'dist/index.html'], {root: resolve('/')}),
     new HtmlWebpackPlugin({
       favicon: resolve('src/assets/logo.ico'),
       template: 'index.html',
@@ -129,16 +127,28 @@ module.exports = {
       }
     }),
     new HappyPack({
-      id: 'happy-babel-js',
-      loaders: ['babel-loader?cacheDirectory=true'],
+      id: 'js',
+      loaders: [{
+        loader: 'babel-loader',
+        options: { babelrc: true, cacheDirectory: true }
+      }, 'eslint-loader'],
       threadPool: happyThreadPool
     }),
     new HappyPack({
       id: 'vue',
-      loaders: ['vue-loader'],
+      loaders: ['vue-loader', 'eslint-loader'],
       threadPool: happyThreadPool
     }),
-    new webpack.HashedModuleIdsPlugin()
+    new HappyPack({
+      id: 'css',
+      loaders: ['css-loader', 'postcss-loader'],
+      threadPool: happyThreadPool
+    }),
+    new HappyPack({
+      id: 'less',
+      loaders: ['css-loader', 'postcss-loader', 'less-loader'],
+      threadPool: happyThreadPool
+    })
     // new PurifyCSSPlugin({ // 去除无用的css --> 经测试，去除了很多有用的css
     //   // 路径扫描 nodejs内置 路径检查
     //   paths: glob.sync(path.join(__dirname, 'src/*/*.html'))
